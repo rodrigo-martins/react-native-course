@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import PlaceInput from "./src/components/PlaceInput/PlaceInput"
 import PlaceList from "./src/components/PlaceList/PlaceList"
 import PlaceDetail from "./src/components/PlaceDetail/PlaceDetail"
-import {addPlace, deletePlace,selectPlace,deselectPlace } from './src/store/actions/index/'
+import {addPlace, deletePlace, selectPlace, deselectPlace } from './src/store/actions/index/'
 
 class App extends Component {
 
@@ -29,13 +29,13 @@ class App extends Component {
     return (
       <View style={styles.container}>
         <PlaceDetail
-          selectedPlace={this.state.selectedPlace}
+          selectedPlace={this.props.selectedPlace}
           onItemDeleted={this.placeDeletedHandler}
           onModalClosed={this.modalClosedHandler}
         />
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
         <PlaceList
-          places={this.state.places}
+           places={this.props.places}
           onItemSelected={this.placeSelectedHandler}
         />
       </View>
@@ -62,10 +62,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddPlace: (name) => dispatch(addPlace(name)),
+    onAddPlace: name => dispatch(addPlace(name)),
     onDeletePlace: () => dispatch(deletePlace()),
-    onSelectPlace: (key) => dispatch(selectPlace(key)),
+    onSelectPlace: key => dispatch(selectPlace(key)),
     onDeselectPlace: () => dispatch(deselectPlace())
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(App)

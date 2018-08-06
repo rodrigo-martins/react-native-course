@@ -7,9 +7,9 @@ import configureStore from './src/store/configureStore'
 const store = configureStore()
 
 const RNRedux = () => (
-    <Proveder store={store}>
+    <Provider store={store}>
         <App />
-    </Proveder>
+    </Provider>
 )
 
 AppRegistry.registerComponent('reactnativecourse', () => RNRedux);
